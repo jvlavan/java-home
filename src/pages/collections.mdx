@@ -1,0 +1,88 @@
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Java Collections Overview
+
+This table provides an overview of key Java Collection interfaces, their common implementations, and usage examples.
+
+<Tabs>
+   <TabItem value="table" label="Table View" default>
+
+| **Interface**   | **Implementation Examples**              | **Common Methods with Example**                                                                                                             | **Key Highlights**                                                                                     |
+|------------------|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `List`          | `ArrayList`, `LinkedList`, `Vector`      | ```java  List<String> list = new ArrayList<>(); list.add("Apple"); list.get(0); list.size(); ```                                             | Best for ordered collections and index-based access (`ArrayList` is most common).                      |
+| `Set`           | `HashSet`, `LinkedHashSet`, `TreeSet`    | ```java Set<Integer> set = new HashSet<>(); set.add(1); set.contains(1); set.remove(1); ```                                                 | Ensures uniqueness. `TreeSet` maintains a sorted order.                                                |
+| `Queue`         | `PriorityQueue`, `LinkedList`, `ArrayDeque` | ```java Queue<String> queue = new LinkedList<>(); queue.offer("Task 1"); queue.poll(); queue.peek(); ```                                    | Useful for FIFO (Queue) operations.                                                                    |
+| `Deque`         | `ArrayDeque`, `LinkedList`              | ```java Deque<Integer> deque = new ArrayDeque<>(); deque.addFirst(10); deque.addLast(20); deque.pollFirst(); ```                            | Useful for double-ended operations.                                                                    |
+| `Map`           | `HashMap`, `TreeMap`, `LinkedHashMap`    | ```java Map<String, Integer> map = new HashMap<>(); map.put("A", 1); map.get("A"); map.containsKey("A"); ```                                | Works with key-value pairs for quick lookups.                                                          |
+| `SortedSet`     | `TreeSet`                               | ```java SortedSet<Integer> sortedSet = new TreeSet<>(); sortedSet.add(5); sortedSet.first(); sortedSet.last(); ```                          | Adds order-specific methods.                                                                           |
+| `SortedMap`     | `TreeMap`                               | ```java SortedMap<String, Integer> sortedMap = new TreeMap<>(); sortedMap.put("A", 1); sortedMap.firstKey(); sortedMap.lastKey(); ```        | Adds order-specific methods.                                                                           |
+| `NavigableSet`  | `TreeSet`                               | ```java NavigableSet<Integer> navSet = new TreeSet<>(); navSet.add(10); navSet.lower(10); navSet.pollFirst(); ```                           | Allows for relative positioning like `lower`, `floor`, etc.                                            |
+| `NavigableMap`  | `TreeMap`                               | ```java NavigableMap<String, Integer> navMap = new TreeMap<>(); navMap.put("A", 1); navMap.lowerKey("B"); navMap.pollLastEntry(); ```       | Allows for relative positioning like `lower`, `floor`, etc.                                            |
+| `Comparator`    | Custom logic implementations            | ```java Comparator<Integer> comp = (a, b) -> a - b; TreeSet<Integer> set = new TreeSet<>(comp); set.add(2); ```                             | Custom logic to define ordering.                                                                       |
+| `Enumeration`   | Legacy collections (`Vector`, `Hashtable`) | ```java Vector<Integer> vector = new Vector<>(); Enumeration<Integer> e = vector.elements(); while (e.hasMoreElements()) { e.nextElement(); } ``` | Legacy but useful for backward compatibility.                                                          |
+
+  </TabItem>
+  <TabItem value="details" label="Details">
+
+    ## Detailed Explanation
+
+    Here's a more in-depth look at each interface and its purpose:
+
+    ### List
+    -   **Purpose:** Represents an ordered collection of elements.
+    -   **Key Implementations:** `ArrayList` (dynamic array), `LinkedList` (doubly linked list), `Vector` (thread-safe array).
+    -   **Best Use Case:** When you need to maintain the order of elements and access them by index (e.g., accessing the 3rd item).
+
+    ### Set
+    -   **Purpose:** Ensures that all elements are unique (no duplicates).
+    -   **Key Implementations:** `HashSet` (unordered, uses hashing), `LinkedHashSet` (maintains insertion order), `TreeSet` (sorted).
+    -   **Best Use Case:** When you want to store distinct values, like a collection of unique IDs or tags.
+
+    ### Queue
+    -   **Purpose:** Designed for first-in-first-out (FIFO) data structure.
+    -   **Key Implementations:** `PriorityQueue` (elements are prioritized), `LinkedList` (implements both `Queue` and `Deque`), `ArrayDeque` (resizable array implementation of Deque).
+    -   **Best Use Case:** When dealing with tasks that need to be processed in the order they were added (like task queues).
+
+    ### Deque
+    -   **Purpose:** Double-ended queue that allows adding and removing from both ends. 
+    -   **Key Implementations:** `ArrayDeque`, `LinkedList`
+    -   **Best Use Case:** When you need to add and remove from both the front and back (like a browser history).
+
+    ### Map
+    -   **Purpose:** Stores key-value pairs, where keys must be unique.
+    -   **Key Implementations:** `HashMap` (unordered), `TreeMap` (sorted by keys), `LinkedHashMap` (maintains insertion order).
+    -   **Best Use Case:** When you need to quickly access values using a unique identifier (e.g., storing user details by ID).
+
+    ### SortedSet
+    -   **Purpose:** Maintains a set of elements in sorted order, leveraging the natural order or a custom `Comparator`.
+    -   **Key Implementation:** `TreeSet`.
+    -   **Best Use Case:** When you need a collection of unique elements that are always sorted.
+
+    ### SortedMap
+    -   **Purpose:** Like `Map`, but maintains keys in a sorted order.
+    -   **Key Implementation:** `TreeMap`
+    -   **Best Use Case:** When you need to store and access key-value pairs with keys always sorted.
+
+    ### NavigableSet
+     - **Purpose:** Extends SortedSet and provides methods for navigation between elements (lower, higher, floor, ceiling, etc.).
+    - **Key Implementation:** `TreeSet`.
+    - **Best Use Case:** When you need to find the closest element to a target value in a sorted set.
+
+    ### NavigableMap
+    -   **Purpose:** Extends SortedMap and provides methods for navigation between key-value entries.
+    -   **Key Implementation:** `TreeMap`.
+    -   **Best Use Case:** Similar to `NavigableSet`, but for key-value pairs; suitable for range queries.
+
+    ### Comparator
+    -   **Purpose:**  Defines custom comparison logic for objects.
+    -   **Key Usage:** Often used with `TreeSet` or `TreeMap` to provide a non-natural sort order.
+    -   **Best Use Case:**  When you need to sort objects based on criteria other than their natural ordering.
+
+    ### Enumeration
+    -   **Purpose:** A legacy interface for iterating through elements of older collections like `Vector` or `Hashtable`.
+    -   **Key Use Case:**  When you need to work with these legacy classes.
+
+  </TabItem>
+</Tabs>

@@ -1,0 +1,133 @@
+
+# Best Time to Buy and Sell Stock 📈
+
+This problem focuses on finding the maximum profit from one buy-sell transaction in a stock price array.
+
+---
+
+## Problem Statement 📝
+
+Given an array `prices` where `prices[i]` is the price of a stock on the `i-th` day, find the maximum profit you can achieve from a single buy-sell transaction. If no profit is possible, return `0`.
+
+---
+
+## Key Concept 💡
+
+### Rules
+:::tip Key Rules
+- You **must buy before selling** (no selling in the past).
+- Only **one transaction** (one buy, one sell) is allowed.
+- If prices are always decreasing, the profit will be `0`.
+:::
+
+### Approach
+- Use **Greedy** logic to maximize profit by:
+  1. Tracking the **minimum price** (`min`) seen so far.
+  2. Calculating the potential profit at each step:
+     Profit = Current Price - Min Price 
+  3. Updating the **max profit** whenever a higher profit is found.
+
+---
+
+### Edge Cases 🔍
+
+ -    All prices decreasing:
+       Input: [5, 4, 3, 2, 1]
+       Output: 0 (No profit possible).
+
+ -   Single price:
+      Input: [5]
+      Output: 0 (No transactions possible).
+
+ -   Multiple same prices:
+      Input: [3, 3, 3]
+      Output: 0 (No profit possible).
+
+ -   Empty prices array:
+      Input: []
+      Output: 0 (No transactions possible)
+
+- Related Patterns 🧩
+   Array Patterns
+
+    1. Sliding Window:
+        Track the "window" of minimum price seen so far.
+    2. Greedy Algorithm:
+        Make locally optimal choices to maximize global profit.
+
+## Algorithm Breakdown ⚙️
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="Pseudo Code" label="Pseudo Code">
+
+```plaintext
+1. Initialize `min` to the first price in `prices` and `profit` to `0`.
+2. Iterate through each `price` in the `prices` array:
+   - If the `current price` is less than `min`, update `min = current price`.
+   - Calculate `currentProfit = currentPrice - min`.
+   - Update `profit` with `max(profit, currentProfit)`.
+3. Return `profit`.
+```
+</TabItem> 
+<TabItem value="Java Code" label="Java Code">
+
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length <= 1) {
+            return 0; // Handle edge cases: empty or single price array
+        }
+
+        int min = prices[0];
+        int profit = 0;
+
+        for (int price : prices) {
+            if (price < min) {
+                min = price; // Update minimum price
+            }
+            //Selling price is represented as price-min;
+            profit = Math.max(profit, price - min); // Maximize profit
+        }
+        return profit;
+    }
+}
+```
+
+</TabItem> 
+<TabItem value="Diagram 🖼️" label="Diagram 🖼️">
+
+```mermaid
+graph TD
+    A[Start] --> B[Initialize variables]
+    B --> C[Iterate through prices array]
+    C --> D{Is current price < min?}
+    D -- Yes --> E[Update min to current price]
+    D -- No --> F[Calculate profit = current price - min]
+    F --> G[Update max profit if needed]
+    G --> H[Repeat for all prices]
+    H --> I[Return max profit]
+  ```
+
+</TabItem>
+
+
+ </Tabs>
+
+
+
+
+
+
+:::info Complexity
+
+    Time Complexity: O(n)
+        Single pass through the array.
+    Space Complexity: O(1)
+        Constant space usage for variables (min and profit).
+:::
+
+
+
