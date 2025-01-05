@@ -16,7 +16,7 @@ const config = {
   favicon: '☕ Java Home ',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://java-reference.pages.dev',
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
 
